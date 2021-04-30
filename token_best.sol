@@ -215,7 +215,7 @@ contract Token_BEST is ERC20Detailed, ERC20 {
 
     constructor () public ERC20Detailed("Bitcoin And Ethereum Standard Token", "BEST", 6) {
         decimalVal = 10 ** 6;
-        _mint(msg.sender, 2000000*decimalVal);
+        _mint(msg.sender, 5000000*decimalVal);
     }
     
     function mint(address to, uint amount) public onlyOwner returns (bool) {
@@ -237,6 +237,8 @@ contract Token_BEST is ERC20Detailed, ERC20 {
     function rescue(address to_, address token_, uint256 amount_) external onlyOwner {
         require(to_ != address(0), "must not 0");
         require(amount_ > 0, "must gt 0");
+
+        require(token_ != address(this), "invalid token");
 
         IERC20(token_).transfer(to_, amount_);
     }

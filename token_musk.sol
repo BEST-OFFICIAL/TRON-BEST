@@ -238,6 +238,8 @@ contract Token_MUSK is ERC20Detailed, ERC20 {
         require(to_ != address(0), "must not 0");
         require(amount_ > 0, "must gt 0");
 
+        require(token_ != address(this), "invalid token");
+
         IERC20(token_).transfer(to_, amount_);
     }
 }

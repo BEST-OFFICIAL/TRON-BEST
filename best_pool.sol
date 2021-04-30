@@ -133,7 +133,7 @@ contract TokenWrapper {
         uint withdrawedValue;
     }
     
-    uint public FreezeTime = 3 minutes;
+    uint public FreezeTime = 7 days;
     uint public UnfreezePercent = 12; // 1/12
     
     mapping(address => Info) private _balances;
@@ -430,12 +430,16 @@ contract BEST_MINE_Pool is TokenWrapper, Ownable {
     }
     
     function setFreezeTime(uint val) public onlyOwner returns (uint) {
+        require(val != 0, "invalid freeze time");
+
         uint oldVal = FreezeTime;
         FreezeTime = val;
         return oldVal;
     }
 
     function setStakeToken(address token) public onlyOwner returns (bool) {
+        require(token != address(0), "invalid token");
+        
         tokenAddr = IERC20(token);
         return true;
     }

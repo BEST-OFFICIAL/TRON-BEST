@@ -233,7 +233,7 @@ contract Mine_BEST_USDT_LP_Pool is TokenWrapper, Ownable {
     IERC20 public rewardToken = IERC20(0x13fB5Df6E37430248BFADd5a4EFf52A5a7B160b9); // MASK
     uint public constant DURATION = 365 days;
 
-    uint public starttime = 1614556800; // 2021-03-01 00:00:00
+    uint public starttime = 1619740800; // 2021-04-30 00:00:00
     uint public periodFinish = 0;
     uint public rewardPerDuration = 0;
     uint public rewardDuration;
@@ -291,7 +291,7 @@ contract Mine_BEST_USDT_LP_Pool is TokenWrapper, Ownable {
         if (now >= rewardRateAdjustTime + periodDuration) {
             uint changeRate = now.sub(rewardRateAdjustTime).div(periodDuration);
             rewardRateAdjustTime = rewardRateAdjustTime + changeRate.mul(periodDuration);
-            rewardPerDuration = rewardPerDuration * (85 ** changeRate) / (100 ** changeRate);
+            rewardPerDuration = rewardPerDuration.mul(85 ** changeRate).div(100 ** changeRate);
         }
     }
 
