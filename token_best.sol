@@ -214,7 +214,7 @@ contract Token_BEST is ERC20Detailed, ERC20 {
     uint public decimalVal;
 
     constructor () public ERC20Detailed("Bitcoin And Ethereum Standard Token", "BEST", 6) {
-        decimalVal = 10 ** 6;
+        decimalVal = 10 ** 18;
         _mint(msg.sender, 5000000*decimalVal);
     }
     
